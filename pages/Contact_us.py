@@ -1,11 +1,13 @@
 import streamlit as st
+from send_email import send_email
 
 st.header("Contact me")
 
 with st.form(key="Email forms"):
-    input_gmail= st.text_input("Your email address")
-    input_text =st.text_area("Your message")
-    submit_button = st.form_submit_button("Submit")
+    user_gmail= st.text_input("Your email address")
+    message =st.text_area("Your message")
+    message=message+"\n"+user_gmail
+    button = st.form_submit_button("Submit")
 
-    if submit_button:
-         print("you printed button")
+    if button:
+         send_email(message, user_gmail)
